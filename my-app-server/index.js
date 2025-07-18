@@ -12,8 +12,17 @@ let data = [
   { id: 2, name: 'Item 2' },
 ];
 
+let movies = [
+  { id: 1, name: 'Movie 1' },
+  { id: 2, name: 'Movie 2' },
+];
+
 app.get('/api/items', (req, res) => {
   res.json(data);
+});
+
+app.get('/api/movies', (req, res) => {
+  res.json(movies);
 });
 
 app.post('/api/items', (req, res) => {

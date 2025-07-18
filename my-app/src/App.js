@@ -3,12 +3,20 @@ import React, { useEffect, useState } from 'react';
 
     function App() {
       const [items, setItems] = useState([]);
+      const [movies, setMovies] = useState([]);
       const [newItem, setNewItem] = useState('');
 
       useEffect(() => {
         fetch('http://localhost:5000/api/items')
           .then((response) => response.json())
           .then((data) => setItems(data));
+      }, []);
+
+
+      useEffect(() => {
+        fetch('http://localhost:5000/api/movies')
+          .then((response) => response.json())
+          .then((data) => setMovies(data));
       }, []);
 
       const handleSubmit = (e) => {
@@ -44,6 +52,12 @@ import React, { useEffect, useState } from 'react';
               />
               <button type="submit">Add Item</button>
             </form>
+            <h1>Movies</h1>
+            <ul>
+              {movies.map((movie) => (
+                <li key={movie.id}>{movie.name}</li>
+              ))}
+            </ul>
           </header>
         </div>
       );
