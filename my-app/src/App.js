@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
     function App() {
       const [items, setItems] = useState([]);
       const [movies, setMovies] = useState([]);
+      const [cars, setCars] = useState([]);
       const [newItem, setNewItem] = useState('');
 
       useEffect(() => {
@@ -17,6 +18,12 @@ import React, { useEffect, useState } from 'react';
         fetch('http://localhost:5000/api/movies')
           .then((response) => response.json())
           .then((data) => setMovies(data));
+      }, []);
+
+       useEffect(() => {
+        fetch('http://localhost:5000/api/cars')
+          .then((response) => response.json())
+          .then((data) => setCars(data));
       }, []);
 
       const handleSubmit = (e) => {
@@ -56,6 +63,12 @@ import React, { useEffect, useState } from 'react';
             <ul>
               {movies.map((movie) => (
                 <li key={movie.id}>{movie.name}</li>
+              ))}
+            </ul>
+             <h1>cars purchased befor an Year</h1>
+            <ul>
+              {cars.map((car) => (
+                <li key={car.id}>{car.name}</li>
               ))}
             </ul>
           </header>
